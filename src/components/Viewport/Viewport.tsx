@@ -5,7 +5,6 @@ const Viewport = () => {
   const divRef = useRef(null);
   const [divDimensions, setDivDimensions] = useState({ width: 0, height: 0 });
 
-  // useEffect to get the div dimensions
   useEffect(() => {
     const updateDimensions = () => {
       if (divRef.current) {
@@ -14,20 +13,18 @@ const Viewport = () => {
       }
     };
 
-    // Call the function once initially
-    updateDimensions();
+    const resizeObserver = new ResizeObserver(updateDimensions);
 
-    // Add event listener for resize
-    window.addEventListener("resize", updateDimensions);
+    if (divRef.current) {
+      updateDimensions(); // Initial calculation
+      resizeObserver.observe(divRef.current);
+    }
 
-    // Clean up the event listener on component unmount
-    return () => {
-      window.removeEventListener("resize", updateDimensions);
-    };
+    return () => resizeObserver.disconnect(); // Clean up
   }, []);
 
   return (
-    <div ref={divRef} className="column-container">
+    <div ref={divRef} className="viewport">
       {divDimensions.width}
       <br />X<br />
       {divDimensions.height}

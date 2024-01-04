@@ -1,7 +1,12 @@
-.column-container {
+.viewport {
   display: flex;
   flex-direction: column;
   align-content: center;
   justify-content: center;
   text-align: center;
+  flex-grow: 1;
+  font-size: 1em;
+  border: solid 1px black;
+  background-color: #27272a;
+  color: white;
 }
