@@ -1,5 +1,3 @@
-// App.test.js
-
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
@@ -23,8 +21,5 @@ describe("App Component", () => {
     expect(screen.getByTestId("App")).toBeInTheDocument();
     expect(screen.getByTestId("sidebar")).toBeInTheDocument();
     expect(screen.getByTestId("grid")).toBeInTheDocument();
-    // Add more assertions as needed
   });
-
-  // Add more tests for state changes, interactions, etc.
 });

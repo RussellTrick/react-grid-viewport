@@ -15,7 +15,11 @@ const Grid = ({ rows, columns }: GridProps) => {
   return (
     <div data-testid="grid" className="grid">
       {columnIndices.map((columnIndex) => (
-        <div key={columnIndex} className="grid-column">
+        <div
+          key={columnIndex}
+          data-testid="grid-column"
+          className="grid-column"
+        >
           {rowIndices.map((rowIndex) => (
             <Viewport key={rowIndex} />
           ))}

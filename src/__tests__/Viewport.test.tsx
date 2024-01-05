@@ -1,5 +1,3 @@
-// Viewport.test.js
-
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
@@ -21,8 +19,5 @@ describe("Viewport Component", () => {
 
     // check if the component is rendered properly
     expect(screen.getByTestId("viewport")).toBeInTheDocument();
-    // more assertions
   });
-
-  // more tests.
 });
