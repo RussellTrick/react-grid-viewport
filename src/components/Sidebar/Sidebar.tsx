@@ -6,8 +6,8 @@ interface SidebarProps {
   onToggleCollapse: () => void;
   rows: number;
   columns: number;
-  onRowsChange: (newRows: number) => void;
-  onColumnsChange: (newColumns: number) => void;
+  setRows: (newRows: number) => void;
+  setColumns: (newColumns: number) => void;
 }
 
 const Sidebar: React.FC<SidebarProps> = ({
@@ -15,37 +15,53 @@ const Sidebar: React.FC<SidebarProps> = ({
   onToggleCollapse,
   rows,
   columns,
-  onRowsChange,
-  onColumnsChange,
+  setRows,
+  setColumns,
 }) => {
+  const handleColumnsChange = (newValue: number) => {
+    const clampedValue = Math.min(Math.max(newValue, 1), 10); // Max and Min value on columns
+    setColumns(clampedValue);
+  };
+
+  const handleRowsChange = (newValue: number) => {
+    const clampedValue = Math.min(Math.max(newValue, 1), 10); // Max and Min value on rows
+    setRows(clampedValue);
+  };
   return (
-    <div className={`sidebar ${isCollapsed ? "collapsed" : ""}`}>
+    <div
+      data-testid="sidebar"
+      className={`sidebar ${isCollapsed ? "collapsed" : ""}`}
+    >
       <button
         onClick={onToggleCollapse}
         className={`burger-icon ${isCollapsed ? "" : "open"}`}
+        data-testid="burger-icon"
       ></button>
-      {isCollapsed ? null : (
-        <div className="sidebar-items-container">
-          <label htmlFor="rows">Rows</label>
-          <input
-            name="rows"
-            type="number"
-            min="1"
-            max="10"
-            value={rows}
-            onChange={(e) => onRowsChange(Number(e.target.value))}
-          />
-          <label htmlFor="columns">Columns</label>
-          <input
-            name="columns"
-            type="number"
-            min="1"
-            max="10"
-            value={columns}
-            onChange={(e) => onColumnsChange(Number(e.target.value))}
-          />
-        </div>
-      )}
+
+      <div
+        className={`sidebar-items-container ${isCollapsed ? "collapsed" : ""}`}
+      >
+        <label htmlFor="rows">Rows</label>
+        <input
+          name="rows"
+          type="number"
+          min="1"
+          max="10"
+          value={rows}
+          onChange={(e) => handleRowsChange(Number(e.target.value))}
+          data-testid="rows-input"
+        />
+        <label htmlFor="columns">Columns</label>
+        <input
+          name="columns"
+          type="number"
+          min="1"
+          max="10"
+          value={columns}
+          onChange={(e) => handleColumnsChange(Number(e.target.value))}
+          data-testid="columns-input"
+        />
+      </div>
     </div>
   );
 };

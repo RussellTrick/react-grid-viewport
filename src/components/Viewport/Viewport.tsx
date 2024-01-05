@@ -24,7 +24,7 @@ const Viewport = () => {
   }, []);
 
   return (
-    <div ref={divRef} className="viewport">
+    <div data-testid="viewport" ref={divRef} className="viewport">
       {divDimensions.width}
       <br />X<br />
       {divDimensions.height}

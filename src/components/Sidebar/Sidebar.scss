@@ -19,6 +19,11 @@
   flex-direction: column;
   padding-top: 10px;
   gap: 5px;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.sidebar-items-container.collapsed {
+  opacity: 0;
 }
 
 /* burger */

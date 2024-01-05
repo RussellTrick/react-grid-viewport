@@ -13,7 +13,7 @@ const Grid = ({ rows, columns }: GridProps) => {
   const columnIndices = Array.from({ length: columns }, (_, index) => index);
 
   return (
-    <div className="grid">
+    <div data-testid="grid" className="grid">
       {columnIndices.map((columnIndex) => (
         <div key={columnIndex} className="grid-column">
           {rowIndices.map((rowIndex) => (

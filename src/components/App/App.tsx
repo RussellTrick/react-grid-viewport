@@ -12,12 +12,12 @@ export function App() {
   const [isSidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   return (
-    <div className="App">
+    <div data-testid="App" className="App">
       <Sidebar
         rows={rows}
         columns={columns}
-        onRowsChange={setRows}
-        onColumnsChange={setColumns}
+        setRows={setRows}
+        setColumns={setColumns}
         isCollapsed={isSidebarCollapsed}
         onToggleCollapse={() => setSidebarCollapsed(!isSidebarCollapsed)}
       />
